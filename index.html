@@ -92,8 +92,6 @@ animation:entrada .8s ease;
 
 }
 
-/* Animación */
-
 @keyframes entrada{
 
 from{
@@ -146,19 +144,12 @@ margin-top:20px;
 .btn{
 
 padding:14px;
-
 text-align:center;
-
 border-radius:8px;
-
 text-decoration:none;
-
 font-weight:700;
-
 border:2px solid var(--negro);
-
 color:var(--negro);
-
 transition:.25s;
 
 }
@@ -178,6 +169,12 @@ border-radius:14px;
 
 overflow:hidden;
 
+width:100%;
+max-width:420px;
+
+margin-left:auto;
+margin-right:auto;
+
 aspect-ratio:9/16;
 
 }
@@ -195,13 +192,9 @@ border:none;
 .schedule-title{
 
 font-weight:700;
-
 margin-bottom:15px;
-
 border-bottom:2px solid #8b5a2b;
-
 display:inline-block;
-
 padding-bottom:5px;
 
 }
@@ -210,15 +203,13 @@ padding-bottom:5px;
 
 display:flex;
 justify-content:space-between;
-
 font-weight:600;
-
 margin-bottom:8px;
 
 }
 
 /* ===================== */
-/* CARRUSEL PROFESIONAL */
+/* CARRUSEL */
 /* ===================== */
 
 .carousel{
@@ -240,7 +231,6 @@ transition:transform .6s ease;
 .slide{
 
 min-width:100%;
-
 display:flex;
 justify-content:center;
 align-items:center;
@@ -263,17 +253,12 @@ object-fit:contain;
 position:absolute;
 top:50%;
 transform:translateY(-50%);
-
 background:rgba(0,0,0,0.5);
 color:white;
-
 border:none;
-
 font-size:22px;
-
 width:40px;
 height:40px;
-
 border-radius:50%;
 cursor:pointer;
 
@@ -286,7 +271,7 @@ background:black;
 .left{left:10px;}
 .right{right:10px;}
 
-/* INDICADORES */
+/* DOTS */
 
 .dots{
 
@@ -301,12 +286,9 @@ margin-top:12px;
 
 width:10px;
 height:10px;
-
 border-radius:50%;
-
 background:#bbb;
 cursor:pointer;
-
 transition:.3s;
 
 }
@@ -383,7 +365,11 @@ target="_blank">TikTok</a>
 
 <div class="video-container">
 
-<iframe src="https://www.instagram.com/reel/DBZFUR4RPc-/embed"></iframe>
+<iframe 
+src="https://www.youtube.com/embed/AWNijm5NTGQ"
+allowfullscreen
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+</iframe>
 
 </div>
 
@@ -407,7 +393,7 @@ target="_blank">TikTok</a>
 
 </div>
 
-<!-- CARRUSEL MEJORADO -->
+<!-- CARRUSEL -->
 
 <div class="card">
 
@@ -461,6 +447,7 @@ const track = document.getElementById("track");
 const slides = document.querySelectorAll(".slide");
 
 let index = 0;
+let autoplay = true;
 
 function updateCarousel(){
 
@@ -509,11 +496,25 @@ dotsContainer.appendChild(dot);
 
 });
 
-/* AUTOPLAY */
+/* AUTOPLAY CONTROL */
 
-setInterval(nextSlide,4500);
+setInterval(()=>{
 
-/* SWIPE PARA CELULAR */
+if(autoplay){
+nextSlide();
+}
+
+},4500);
+
+/* TOCAR PARA PAUSAR */
+
+document.querySelector(".carousel").addEventListener("click",()=>{
+
+autoplay = !autoplay;
+
+});
+
+/* SWIPE CELULAR */
 
 let startX = 0;
 
